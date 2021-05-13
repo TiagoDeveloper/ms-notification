@@ -1,0 +1,31 @@
+version: '3'
+services: 
+    rabbitmq:
+        image: rabbitmq:management
+        ports:
+        - "5672:5672"
+        - "15672:15672"
+        volumes: 
+            - rabbitmq:/var/lib/rabbitmq
+        restart: always
+        environment: 
+            - RABBITMQ_DEFAULT_USER=guest
+            - RABBITMQ_DEFAULT_PASS=guest
+    postgres:
+      image: postgres:13
+      environment:
+        POSTGRES_PASSWORD: postgres
+      volumes:
+        - postgres:/var/lib/postgresql/data
+      ports:
+        - 5432:5432
+    ms-assinaturas:
+        depends_on: 
+          - postgres
+          - rabbitmq
+        build: .
+        ports:
+        - 8080:8080
+volumes: 
+    rabbitmq:
+    postgres:

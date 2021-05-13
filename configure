@@ -1,0 +1,15 @@
+#!/bin/bash
+
+cd ./ms-assinaturas
+
+echo "Iniciando o maven"
+
+mvn clean install -Phml
+
+echo "Finalizou o maven"
+
+echo "Iniciando o docker"
+
+docker-compose up --build -d 
+
+echo "Finalizou o docker"
