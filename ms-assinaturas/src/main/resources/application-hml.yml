@@ -9,6 +9,11 @@ spring:
       connection-test-query: SELECT 1
       maximum-pool-size: 50
       minimum-idle: 5
+    initialization-mode: always
+    schema:
+    - classpath:schema.sql
+    data:
+    - classpath:data.sql
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL94Dialect
     show-sql: false
@@ -16,7 +21,3 @@ spring:
     properties:
       hibernate:
         ddl-auto: false
-        format_sql: true
-        enable_lazy_load_no_trans: true
-        temp:
-          use_jdbc_metadata_defaults: false
