@@ -20,10 +20,8 @@ CREATE TABLE IF NOT EXISTS public.t_status (
 	primary key(id)
 );
 
-CREATE SEQUENCE IF NOT EXISTS public.sq_subscription START 1;
-
 CREATE TABLE IF NOT EXISTS public.t_subscription (
-	id integer not null DEFAULT nextval('sq_subscription'),
+	id varchar(255) not null,
 	status_id integer not null,
 	create_at timestamp  not null,
 	update_at timestamp  not null,
@@ -38,11 +36,10 @@ CREATE SEQUENCE IF NOT EXISTS public.sq_event_history START 1;
 CREATE TABLE IF NOT EXISTS public.t_event_history (
 	id integer not null DEFAULT nextval('sq_event_history'),
 	type varchar(255) not null,
-	subscription_id integer not null,
+	subscription_id varchar(255) not null,
 	create_at timestamp,
 	primary key(id),
 	constraint fk_subscription_in_t_event_history
 	foreign key(subscription_id)
 	references t_subscription(id)
 );
-

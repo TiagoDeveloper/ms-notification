@@ -21,3 +21,10 @@ spring:
     properties:
       hibernate:
         ddl-auto: false
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    topic:
+      name: "notification"
