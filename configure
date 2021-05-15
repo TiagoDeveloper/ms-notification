@@ -1,0 +1,27 @@
+#!/bin/bash
+
+cd ./ms-assinaturas
+
+echo "-------------------------------------------"
+echo "Iniciando o maven 'mvn clean install -Phml'"
+echo "-------------------------------------------"
+echo
+echo
+mvn clean install -Phml
+echo
+echo "-------------------------------------------"
+echo "Finalizou o maven"
+echo "-------------------------------------------"
+echo
+echo "-------------------------------------------"
+echo "Iniciando o docker 'docker-compose --profile hml up --build'"
+echo "-------------------------------------------"
+echo
+docker-compose down && docker-compose --profile hml up --build
+docker-compose down
+echo
+echo "-------------------------------------------"
+echo "Finalizou o docker"
+echo "-------------------------------------------"
+echo
+#docker-compose logs --follow
