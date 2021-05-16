@@ -11,9 +11,9 @@ spring:
       minimum-idle: 5
     initialization-mode: always
     schema:
-    - classpath:schema.sql
+    - classpath:scripts/schema.sql
     data:
-    - classpath:data.sql
+    - classpath:scripts/data.sql
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL94Dialect
     show-sql: false
