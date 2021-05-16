@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tiagodeveloper.dto.NotificationDTO;
-import com.tiagodeveloper.service.NotificationService;
+import com.tiagodeveloper.producer.RabbitMQProducer;
 
 @RestController
 @RequestMapping("/notification")
 public class NotificationController {
 
 	@Autowired
-	private NotificationService notificationService;
+	private RabbitMQProducer rabbitMQProducer;
 	
 	@PostMapping
 	public ResponseEntity<Void> createNotification(@RequestBody NotificationDTO notificationDTO) {
 		
-		notificationService.createNotification(notificationDTO);
+		rabbitMQProducer.send(notificationDTO);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

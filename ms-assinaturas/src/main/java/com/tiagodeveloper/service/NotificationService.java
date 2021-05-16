@@ -1,10 +1,11 @@
 package com.tiagodeveloper.service;
 
+import com.tiagodeveloper.domain.EventHistory;
 import com.tiagodeveloper.dto.NotificationDTO;
 
 
 public interface NotificationService {
 
-	void createNotification(NotificationDTO notificationDTO);
+	EventHistory createNotification(NotificationDTO notificationDTO);
 
 }
