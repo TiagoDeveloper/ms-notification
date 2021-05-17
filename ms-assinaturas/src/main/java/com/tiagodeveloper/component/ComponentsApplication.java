@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component;
 import com.tiagodeveloper.consumer.RabbitMQConsumer;
 import com.tiagodeveloper.producer.RabbitMQProducer;
 
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+
 @Component
 public class ComponentsApplication {
 
@@ -27,6 +31,14 @@ public class ComponentsApplication {
 	@Bean
 	public RabbitMQConsumer rabbitMQConsumer() {
 		return new RabbitMQConsumer();
+	}
+	
+	@Bean
+	public Docket api() {                
+	    return new Docket(DocumentationType.SWAGGER_2)
+	      .select()
+	      .apis(RequestHandlerSelectors.basePackage("com.tiagodeveloper.controller"))
+	      .build();
 	}
 
 }

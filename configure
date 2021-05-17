@@ -2,10 +2,20 @@
 
 cd ./ms-assinaturas
 
+
+echo "-------------------------------------------"
+echo "Iniciando o docker 'docker-compose' com os serviços postgres e RabbitMQ"
+echo "-------------------------------------------"
+echo
+docker-compose down && docker-compose up -d
+echo
+echo "-------------------------------------------"
+echo "Finalizou o docker"
+echo "-------------------------------------------"
+echo
 echo "-------------------------------------------"
 echo "Iniciando o maven 'mvn clean install -Phml'"
 echo "-------------------------------------------"
-echo
 echo
 mvn clean install -Phml
 echo
@@ -14,14 +24,17 @@ echo "Finalizou o maven"
 echo "-------------------------------------------"
 echo
 echo "-------------------------------------------"
-echo "Iniciando o docker 'docker-compose --profile hml up --build'"
+echo "Iniciando build do projeto ms-assinaturas"
 echo "-------------------------------------------"
 echo
-docker-compose down && docker-compose --profile hml up --build
+docker build -t ms-assinaturas .
+echo
+docker run -p 8080:8080 --network ms-assinaturas-network --name ms-assinaturas ms-assinaturas
+echo
+echo "-------------------------------------------"
+echo "Parando o projeto ms-assinaturas e os serviços postgres e rabbitMQ"
+echo "-------------------------------------------"
+echo
+docker stop ms-assinaturas && docker rm ms-assinaturas
 docker-compose down
-echo
-echo "-------------------------------------------"
-echo "Finalizou o docker"
-echo "-------------------------------------------"
-echo
 #docker-compose logs --follow

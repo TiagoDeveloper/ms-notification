@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tiagodeveloper.dto.NotificationDTO;
+import com.tiagodeveloper.producer.RabbitMQProducer;
 import com.tiagodeveloper.service.NotificationService;
 
 @SpringBootTest
@@ -30,7 +31,7 @@ class ApplicationTests {
 	private ObjectMapper mapper;
 	
 	@MockBean
-	private NotificationService notificationService;
+	private RabbitMQProducer rabbitMQProducer;
 	
 	@Test
 	void createNotificationTest() throws Exception {
@@ -44,7 +45,7 @@ class ApplicationTests {
 				.content(mapper.writeValueAsString(dto)))
 		.andExpect(status().isOk());
 		
-		verify(notificationService, times(1)).createNotification(dto);
+		verify(rabbitMQProducer, times(1)).send(dto);
 		
 	}
 

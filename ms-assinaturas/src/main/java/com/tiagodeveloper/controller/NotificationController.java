@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tiagodeveloper.dto.NotificationDTO;
 import com.tiagodeveloper.producer.RabbitMQProducer;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/notification")
 public class NotificationController {
@@ -19,6 +21,7 @@ public class NotificationController {
 	private RabbitMQProducer rabbitMQProducer;
 	
 	@PostMapping
+	@ApiOperation(value = "Endpoint para envio da notificação para fila do RabbitMQ")
 	public ResponseEntity<Void> createNotification(@RequestBody NotificationDTO notificationDTO) {
 		
 		rabbitMQProducer.send(notificationDTO);

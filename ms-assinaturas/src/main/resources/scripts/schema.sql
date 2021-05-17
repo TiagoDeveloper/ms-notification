@@ -1,3 +1,4 @@
+/**
 ALTER TABLE IF EXISTS t_event_history 
 DROP CONSTRAINT IF EXISTS fk_subscription_in_t_event_history;
 
@@ -11,6 +12,7 @@ DROP TABLE IF EXISTS public.t_subscription;
 DROP SEQUENCE IF EXISTS public.sq_event_history;
 DROP SEQUENCE IF EXISTS public.sq_status;
 DROP SEQUENCE IF EXISTS public.sq_subscription;
+**/
 
 CREATE SEQUENCE IF NOT EXISTS public.sq_status START 1;
 

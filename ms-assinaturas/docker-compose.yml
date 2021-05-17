@@ -11,7 +11,10 @@ services:
         environment: 
             - RABBITMQ_DEFAULT_USER=guest
             - RABBITMQ_DEFAULT_PASS=guest
+        networks:
+          ms-assinaturas-network:
     postgres:
+      container_name: postgres
       image: postgres:13
       ports:
         - 5432:5432
@@ -20,14 +23,19 @@ services:
       restart: always
       environment:
         POSTGRES_PASSWORD: postgres
-    ms-assinaturas:
-        profiles: ["hml"]
-        build: .
-        depends_on: 
-          - postgres
-          - rabbitmq
-        ports:
-        - 8080:8080
+      networks:
+        ms-assinaturas-network:
+#    ms-assinaturas:
+#        profiles: ["hml"]
+#        build: .
+#        depends_on: 
+#          - postgres
+#          - rabbitmq
+#        ports:
+#        - 8080:8080
 volumes: 
     rabbitmq:
     postgres:
+networks:
+  ms-assinaturas-network:
+    name: ms-assinaturas-network
