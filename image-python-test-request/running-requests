@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "-------------------------------------------"
+echo "Iniciando build do test-request"
+echo "-------------------------------------------"
+echo
+docker build -t test-request .
+echo
+docker run --network ms-assinaturas-network --name test-request test-request
+echo
+echo "Apagando o container"
+docker rm test-request
+echo
+echo "-------------------------------------------"
+echo "Foi feita os requests no servidor"
+echo "-------------------------------------------"

@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.5'
 services: 
     rabbitmq:
         image: rabbitmq:management
@@ -25,14 +25,6 @@ services:
         POSTGRES_PASSWORD: postgres
       networks:
         ms-assinaturas-network:
-#    ms-assinaturas:
-#        profiles: ["hml"]
-#        build: .
-#        depends_on: 
-#          - postgres
-#          - rabbitmq
-#        ports:
-#        - 8080:8080
 volumes: 
     rabbitmq:
     postgres:
