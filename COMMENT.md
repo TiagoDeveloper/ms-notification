@@ -5,7 +5,7 @@ Após as portas estarem disponíveis, é necessário rodar o scrip ```./configur
 
 ## Endpoint para enviar para fila a notificação:
 #### POST http://localhost:8080/notification
-
+#### Swagger: http://localhost:8080/swagger-ui/#/notification-controller
 body: 
  ``` 
     {
@@ -26,3 +26,6 @@ password: guest
     user: postgres
 password: postgres
 ```
+
+## Script para executar os request solicitados
+Eu criei o script  ```./running-requests``` para executar os request no ambiente com os dados do "notificacoes.txt".

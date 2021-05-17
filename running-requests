@@ -1,4 +1,6 @@
 #!/bin/bash
+cd ./image-python-test-request
+
 
 echo "-------------------------------------------"
 echo "Iniciando build do test-request"
