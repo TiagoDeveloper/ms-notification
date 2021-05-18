@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-test-query: SELECT 1
+      maximum-pool-size: 50
+      minimum-idle: 5
+    initialization-mode: always
+    schema:
+    - classpath:scripts/schema.sql
+    data:
+    - classpath:scripts/data.sql
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    show-sql: false
+    generate-ddl: false
+    properties:
+      hibernate:
+        ddl-auto: false
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+    topic:
+      name: "notification"

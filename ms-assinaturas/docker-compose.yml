@@ -1,0 +1,33 @@
+version: '3.5'
+services: 
+    rabbitmq:
+        image: rabbitmq:management
+        ports:
+        - "5672:5672"
+        - "15672:15672"
+        volumes: 
+            - rabbitmq:/var/lib/rabbitmq
+        restart: always
+        environment: 
+            - RABBITMQ_DEFAULT_USER=guest
+            - RABBITMQ_DEFAULT_PASS=guest
+        networks:
+          ms-assinaturas-network:
+    postgres:
+      container_name: postgres
+      image: postgres:13
+      ports:
+        - 5432:5432
+      volumes:
+        - postgres:/var/lib/postgresql/data
+      restart: always
+      environment:
+        POSTGRES_PASSWORD: postgres
+      networks:
+        ms-assinaturas-network:
+volumes: 
+    rabbitmq:
+    postgres:
+networks:
+  ms-assinaturas-network:
+    name: ms-assinaturas-network
