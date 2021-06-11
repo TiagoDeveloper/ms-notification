@@ -12,6 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 import com.tiagodeveloper.domain.EventHistory;
 import com.tiagodeveloper.domain.Status;
 import com.tiagodeveloper.domain.Subscription;
+import com.tiagodeveloper.enums.TypeEnum;
 import com.tiagodeveloper.repository.EventHistoryRepository;
 import com.tiagodeveloper.repository.SubscriptionRepository;
 
@@ -29,7 +30,7 @@ class RepositoryTest {
 	void saveSubscriptionTest() {
 		final Subscription subscription = new Subscription();
 		subscription.setId("5793cf6b3fd833521db8c420955e6f06");
-		final Status status = new Status(null, "SUBSCRIPTION_PURCHASED");
+		final Status status = new Status(null, "ativo");
 		subscription.setStatus(status);
 		
 		final Subscription expect = subscriptionRepository.save(subscription);
@@ -46,7 +47,7 @@ class RepositoryTest {
 				.orElseThrow(RuntimeException::new);
 		
 		eventHistory.setSubscription(subscription);
-		eventHistory.setType(subscription.getStatus().getName());
+		eventHistory.setType(TypeEnum.SUBSCRIPTION_PURCHASED);
 		
 		final EventHistory expect = eventHistoryRepository.save(eventHistory);
 		

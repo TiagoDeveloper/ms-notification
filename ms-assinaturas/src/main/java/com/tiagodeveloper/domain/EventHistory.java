@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.tiagodeveloper.enums.TypeEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,7 +35,8 @@ public class EventHistory {
 	@Column(name = "id", updatable = false, nullable = false)
 	private Integer id;
 	
-	private String type;
+	@Enumerated(EnumType.STRING)
+	private TypeEnum type;
 	
 	@ManyToOne(targetEntity = Subscription.class)
 	@JoinColumn(name="subscription_id")

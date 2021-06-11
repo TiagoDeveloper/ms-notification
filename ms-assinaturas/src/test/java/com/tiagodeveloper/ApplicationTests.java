@@ -16,8 +16,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tiagodeveloper.dto.NotificationDTO;
+import com.tiagodeveloper.enums.TypeEnum;
 import com.tiagodeveloper.producer.RabbitMQProducer;
-import com.tiagodeveloper.service.NotificationService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -37,7 +37,7 @@ class ApplicationTests {
 	void createNotificationTest() throws Exception {
 		
 		final NotificationDTO dto = new NotificationDTO();
-			dto.setNotificationType("SUBSCRIPTION_PURCHASED");
+			dto.setNotificationType(TypeEnum.SUBSCRIPTION_PURCHASED);
 			dto.setSubscription("5793cf6b3fd833521db8c420955e6f01");
 		
 		mockMvc.perform(post("/notification")
@@ -48,5 +48,4 @@ class ApplicationTests {
 		verify(rabbitMQProducer, times(1)).send(dto);
 		
 	}
-
 }
